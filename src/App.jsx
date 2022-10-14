@@ -7,10 +7,10 @@ import { Footer } from './layout/Footer';
 const App = () => {
     return (
         <Stack
-            sx={{ width: '100%', height: '100vh' }}
+            sx={{ width: '100%', height: '100%' }}
             spacing={2}
             justifyContent='center'
-            color='secondary'
+            backgroundColor='primary'
         >
             <Header />
             <MainSection />

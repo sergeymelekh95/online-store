@@ -5,17 +5,17 @@ import { Saidbar } from './Saidbar';
 
 export const MainSection = () => {
     return (
-        <Box flexGrow={1}>
+        <Box>
             <Container maxWidth='xl'>
                 <Grid
                     container
                     spacing={2}
-                    direction={{ xs: 'column', md: 'row' }}
+                    direction={{  lg: 'row', md: 'column' }}
                 >
-                    <Grid item xs={2}>
+                    <Grid item lg={2} md={10} sm={12} xs={12}>
                         <Saidbar />
                     </Grid>
-                    <Grid item xs={10}>
+                    <Grid item lg={10}>
                         <Main />
                     </Grid>
                 </Grid>
