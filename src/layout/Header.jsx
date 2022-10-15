@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { Logo } from '../components/Logo';
 import { SearchForm } from '../components/SearchForm';
 import { HeaderControls } from '../components/HeaderControls';
+import { NavTabs } from '../components/NavTabs';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     '&': {
@@ -22,6 +23,9 @@ export const Header = () => {
                         <Logo />
                         <SearchForm />
                         <HeaderControls />
+                    </StyledToolbar>
+                    <StyledToolbar>
+                        <NavTabs />
                     </StyledToolbar>
                 </Container>
             </AppBar>

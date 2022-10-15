@@ -12,6 +12,8 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 import CategoryIcon from '@mui/icons-material/Category';
 
+import { capitalize } from '../functions/capitalize';
+
 const categories = [
     'smartphones',
     'laptops',
@@ -42,7 +44,6 @@ export const Categories = () => {
         setOpenCategories(!openCategories);
     };
 
-    const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
     const removeDash = (str) => str.split('-').join(' ');
     return (
         <>
@@ -59,7 +60,11 @@ export const Categories = () => {
             <Collapse in={openCategories} timeout='auto' unmountOnExit>
                 <List component='div' disablePadding>
                     {categories.map((category) => (
-                        <ListItemButton sx={{ pl: 4 }} key={category}>
+                        <ListItemButton
+                            sx={{ pl: 4 }}
+                            key={category}
+                            onClick={handleClick}
+                        >
                             <ListItemText
                                 primary={capitalize(removeDash(category))}
                             />
