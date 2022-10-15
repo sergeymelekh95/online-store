@@ -13,12 +13,8 @@ export const Main = () => {
     return (
         <Box sx={{ flexGrow: 1 }} component='main'>
             <Routes>
-                <Route
-                    path='/'
-                    element={<Navigate to='/products' replace />}
-                ></Route>
+                <Route path='/' element={<Navigate to='/products' />}></Route>
                 <Route path='/products' element={<Products />}></Route>
-                {/* <Route path='/products/:category' element={<Detail />}></Route> */}
                 <Route path='/about' element={<About />}></Route>
                 <Route path='/delivery' element={<Delivery />}></Route>
                 <Route path='/payment' element={<Payment />}></Route>

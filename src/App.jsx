@@ -10,7 +10,7 @@ const App = () => {
     return (
         <BrowserRouter basename='/online-store'>
             <Stack
-                sx={{ width: '100%', height: '100%' }}
+                sx={{ width: '100%', height: '100vh' }}
                 spacing={2}
                 backgroundColor='primary'
             >
