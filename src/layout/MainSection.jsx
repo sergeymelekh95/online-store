@@ -5,7 +5,7 @@ import { Saidbar } from './Saidbar';
 
 export const MainSection = () => {
     return (
-        <Box>
+        <Box flexGrow={1}>
             <Container maxWidth='xl'>
                 <Grid
                     container

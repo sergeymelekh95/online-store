@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Box, Tab } from '@mui/material';
 
 import { TabContext, TabList } from '@mui/lab';
@@ -37,25 +37,25 @@ export const NavTabs = () => {
                         <Tab
                             label='Shop'
                             to='/products'
-                            component={NavLink}
+                            component={Link}
                             value='/products'
                         />
                         <Tab
                             label='About'
                             to='/about'
-                            component={NavLink}
+                            component={Link}
                             value='/about'
                         />
                         <Tab
                             label='Delivery'
                             to='/delivery'
-                            component={NavLink}
+                            component={Link}
                             value='/delivery'
                         />
                         <Tab
                             label='Payment'
                             to='/payment'
-                            component={NavLink}
+                            component={Link}
                             value='/payment'
                         />
                     </TabList>
