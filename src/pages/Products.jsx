@@ -4,8 +4,9 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 
 import { MediaCard } from '../components/MediaCard';
 import { SortSelect } from '../components/SortSelect';
+import { Loader } from '../components/Loader';
 
-import {capitalize} from '../functions/capitalize';
+import { capitalize } from '../functions/capitalize';
 
 const defaultCategory = 'all';
 
@@ -110,7 +111,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const Products = () => {
-
     return (
         <>
             <Toolbar sx={{ justifyContent: 'space-between' }}>
@@ -127,13 +127,17 @@ export const Products = () => {
                 spacing={{ xs: 2, md: 3 }}
                 columns={{ xs: 2, sm: 8, md: 12 }}
             >
-                {products.map((product) => (
-                    <Grid item xs={2} sm={4} md={4} key={product.id}>
-                        <Item>
-                            <MediaCard {...product} />
-                        </Item>
-                    </Grid>
-                ))}
+                {products.length ? (
+                    products.map((product) => (
+                        <Grid item xs={2} sm={4} md={4} key={product.id}>
+                            <Item>
+                                <MediaCard {...product} />
+                            </Item>
+                        </Grid>
+                    ))
+                ) : (
+                    <Loader />
+                )}
             </Grid>
         </>
     );
