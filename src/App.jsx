@@ -6,7 +6,7 @@ import { Header } from './layout/Header';
 import { MainSection } from './layout/MainSection';
 import { Footer } from './layout/Footer';
 
-const App = () => {
+export const App = () => {
     return (
         <BrowserRouter basename='/online-store'>
             <Stack
@@ -21,5 +21,3 @@ const App = () => {
         </BrowserRouter>
     );
 };
-
-export default App;

@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+
 import { Paper, Grid, Toolbar, Typography, Box } from '@mui/material';
 
 import { experimentalStyled as styled } from '@mui/material/styles';
@@ -7,8 +9,9 @@ import { SortSelect } from '../components/SortSelect';
 import { Loader } from '../components/Loader';
 
 import { capitalize } from '../functions/capitalize';
+import { removeDash } from '../functions/removeDash';
 
-const defaultCategory = 'all';
+import { DEFAULT_CATEGORY } from '../api';
 
 const products = [
     {
@@ -111,11 +114,13 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const Products = () => {
+    const { category } = useParams();
+
     return (
         <>
             <Toolbar sx={{ justifyContent: 'space-between' }}>
                 <Typography variant='h4'>
-                    {capitalize(defaultCategory)}
+                    {capitalize(removeDash(category) || DEFAULT_CATEGORY)}
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography variant='h5'>Sort by:</Typography>
