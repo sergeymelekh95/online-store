@@ -4,7 +4,7 @@ import { Typography, Stack, IconButton, Link } from '@mui/material';
 
 import ShopTwoOutlinedIcon from '@mui/icons-material/ShopTwoOutlined';
 
-import { DEFAULT_CATEGORY } from '../api';
+import { DEFAULT_CATEGORY } from '../constants/constants';
 
 export const Logo = () => {
     return (

@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { BrowserRouter } from 'react-router-dom';
+
+import { Provider } from 'react-redux';
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+import { store } from './store';
 import './index.css';
 import { App } from './App';
 
@@ -20,8 +25,12 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <ThemeProvider theme={theme}>
-            <App />
-        </ThemeProvider>
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
+                <BrowserRouter basename='/online-store'>
+                    <App />
+                </BrowserRouter>
+            </ThemeProvider>
+        </Provider>
     </React.StrictMode>
 );

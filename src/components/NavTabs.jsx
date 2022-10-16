@@ -4,7 +4,7 @@ import { Box, Tab } from '@mui/material';
 import { TabContext, TabList } from '@mui/lab';
 
 import { useRouteMatch } from '../hooks/useRouteMatch';
-import { DEFAULT_CATEGORY } from '../api';
+import { DEFAULT_CATEGORY } from '../constants/constants';
 
 export const NavTabs = () => {
     const routeMatch = useRouteMatch([
