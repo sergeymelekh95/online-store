@@ -1,4 +1,4 @@
-const BASE_URL = 'htts://dummyjson.com';
+const BASE_URL = 'https://dummyjson.com';
 
 export const ALL_PRODUCTS = `${BASE_URL}/products`;
 
