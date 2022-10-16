@@ -1,5 +1,3 @@
-import { BrowserRouter } from 'react-router-dom';
-
 import { Stack } from '@mui/material';
 
 import { Header } from './layout/Header';
@@ -8,7 +6,7 @@ import { Footer } from './layout/Footer';
 
 export const App = () => {
     return (
-        <BrowserRouter basename='/online-store'>
+
             <Stack
                 sx={{ width: '100%', height: '100vh' }}
                 spacing={2}
@@ -18,6 +16,6 @@ export const App = () => {
                 <MainSection />
                 <Footer />
             </Stack>
-        </BrowserRouter>
+
     );
 };

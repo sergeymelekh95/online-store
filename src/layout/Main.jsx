@@ -9,7 +9,7 @@ import { Payment } from '../pages/Payment';
 import { About } from '../pages/About';
 // import { Detail } from '../pages/Detail';
 
-import { DEFAULT_CATEGORY } from '../api';
+import { DEFAULT_CATEGORY } from '../constants/constants';
 
 export const Main = () => {
     return (
