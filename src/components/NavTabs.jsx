@@ -1,25 +1,23 @@
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { useLocation, Link } from 'react-router-dom';
 import { Box, Tab } from '@mui/material';
-
 import { TabContext, TabList } from '@mui/lab';
 
+import { useRouteMatch } from '../hooks/useRouteMatch';
+import { DEFAULT_CATEGORY } from '../api';
+
 export const NavTabs = () => {
-    const location = useLocation();
-    const [value, setValue] = useState(location.pathname);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
-    useEffect(() => {
-        setValue(location.pathname);
-    }, [location.pathname]);
+    const routeMatch = useRouteMatch([
+        '/products/:category',
+        '/about',
+        '/delivery',
+        '/payment',
+    ]);
+    const currentTab = routeMatch?.pattern?.path;
 
     return (
         <Box sx={{ width: '100%', typography: 'body1' }}>
-            <TabContext value={value}>
+            <TabContext value={currentTab}>
                 <Box
                     sx={{
                         borderBottom: 1,
@@ -29,16 +27,15 @@ export const NavTabs = () => {
                 >
                     <TabList
                         centered
-                        onChange={handleChange}
                         aria-label='lab API tabs example'
                         textColor='secondary'
                         indicatorColor='secondary'
                     >
                         <Tab
                             label='Shop'
-                            to='/products'
+                            to={`/products/${DEFAULT_CATEGORY}`} // 'phone' will be get from redux or from saidbar nav
                             component={Link}
-                            value='/products'
+                            value='/products/:category'
                         />
                         <Tab
                             label='About'

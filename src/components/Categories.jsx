@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import {
     List,
     ListItemButton,
@@ -13,6 +15,7 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import CategoryIcon from '@mui/icons-material/Category';
 
 import { capitalize } from '../functions/capitalize';
+import { removeDash } from '../functions/removeDash';
 
 const categories = [
     'smartphones',
@@ -44,7 +47,6 @@ export const Categories = () => {
         setOpenCategories(!openCategories);
     };
 
-    const removeDash = (str) => str.split('-').join(' ');
     return (
         <>
             <ListItemButton onClick={handleClick}>
@@ -61,6 +63,8 @@ export const Categories = () => {
                 <List component='div' disablePadding>
                     {categories.map((category) => (
                         <ListItemButton
+                            to={`/products/${category}`}
+                            component={Link}
                             sx={{ pl: 4 }}
                             key={category}
                             onClick={handleClick}
