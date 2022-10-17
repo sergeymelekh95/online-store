@@ -1,5 +1,4 @@
 import { List } from '@mui/material';
-
 import { Categories } from './Categories';
 import { Filters } from './Filters';
 

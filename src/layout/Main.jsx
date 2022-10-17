@@ -1,15 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-
 import { Box } from '@mui/material';
-
-import { Products } from '../pages/Products';
+import { Products } from '../features/products/Products';
 import { NotFound } from '../pages/NotFound';
 import { Delivery } from '../pages/Delivery';
 import { Payment } from '../pages/Payment';
 import { About } from '../pages/About';
 // import { Detail } from '../pages/Detail';
-
-import { DEFAULT_CATEGORY } from '../constants/constants';
+import { DEFAULT_CATEGORY } from '../constants';
 
 export const Main = () => {
     return (

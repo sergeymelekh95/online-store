@@ -1,10 +1,7 @@
 import { NavLink } from 'react-router-dom';
-
 import { Typography, Stack, IconButton, Link } from '@mui/material';
-
 import ShopTwoOutlinedIcon from '@mui/icons-material/ShopTwoOutlined';
-
-import { DEFAULT_CATEGORY } from '../constants/constants';
+import { DEFAULT_CATEGORY } from '../constants';
 
 export const Logo = () => {
     return (

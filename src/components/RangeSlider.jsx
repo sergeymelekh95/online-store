@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { Typography, Box, Slider } from '@mui/material';
 
 export const RangeSlider = () => {
