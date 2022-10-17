@@ -1,21 +1,9 @@
-import { useEffect, useState } from 'react';
-
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useState } from 'react';
 import { Paper, Grid, Pagination, Stack } from '@mui/material';
-
 import { experimentalStyled as styled } from '@mui/material/styles';
-
 import { MediaCard } from '../../components/MediaCard';
 import { Loader } from '../../components/Loader';
-
 import { usePagination } from '../../hooks/usePagination';
-
-import {
-    loadProducts,
-    selectProductsInfo,
-    selectAllProducts,
-} from './productsSlice';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -25,27 +13,19 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export const ProductsList = () => {
-    let [page, setPage] = useState(1);
-    const dispatch = useDispatch();
+export const ProductsList = ({ productsInfo, products }) => {
+    const { error, status, quantityOfAllProducts } = productsInfo;
 
-    const { status, error, qty } = useSelector(selectProductsInfo);
-    const products = useSelector(selectAllProducts);
+    let [page, setPage] = useState(1);
 
     const PER_PAGE = 6;
     const count = Math.ceil(products.length / PER_PAGE);
-    const _DATA = usePagination(products, PER_PAGE);
+    const data = usePagination(products, PER_PAGE);
 
-    const handleChange = (e, p) => {
-        setPage(p);
-        _DATA.jump(p);
+    const handleChange = (event, page) => {
+        setPage(page);
+        data.jump(page);
     };
-
-    useEffect(() => {
-        if (!qty) {
-            dispatch(loadProducts());
-        }
-    }, [qty, dispatch]);
 
     return (
         <>
@@ -59,7 +39,7 @@ export const ProductsList = () => {
                         spacing={{ xs: 2, md: 3 }}
                         columns={{ xs: 2, sm: 8, md: 12 }}
                     >
-                        {_DATA.currentData().map((product) => (
+                        {data.currentData().map((product) => (
                             <Grid item xs={2} sm={4} md={4} key={product.id}>
                                 <Item>
                                     <MediaCard {...product} />

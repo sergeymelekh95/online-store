@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import {
     List,
     ListItemButton,
@@ -7,10 +6,8 @@ import {
     ListItemText,
     Collapse,
 } from '@mui/material';
-
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import FilterListIcon from '@mui/icons-material/FilterList';
-
 import { RangeSlider } from './RangeSlider';
 
 export const Filters = () => {

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 
 export const SortSelect = () => {

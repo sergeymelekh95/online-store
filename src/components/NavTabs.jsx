@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
-
 import { Box, Tab } from '@mui/material';
 import { TabContext, TabList } from '@mui/lab';
-
 import { useRouteMatch } from '../hooks/useRouteMatch';
-import { DEFAULT_CATEGORY } from '../constants/constants';
+import { DEFAULT_CATEGORY } from '../constants';
 
 export const NavTabs = () => {
     const routeMatch = useRouteMatch([

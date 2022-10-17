@@ -1,7 +1,5 @@
 import { useState } from 'react';
-
 import { Link } from 'react-router-dom';
-
 import {
     List,
     ListItemButton,
@@ -9,11 +7,8 @@ import {
     ListItemText,
     Collapse,
 } from '@mui/material';
-
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-
 import CategoryIcon from '@mui/icons-material/Category';
-
 import { capitalize } from '../functions/capitalize';
 import { removeDash } from '../functions/removeDash';
 
@@ -43,7 +38,7 @@ const categories = [
 export const Categories = () => {
     const [openCategories, setOpenCategories] = useState(false);
 
-    const handleClick = () => {
+    const handleClick = (event) => {
         setOpenCategories(!openCategories);
     };
 

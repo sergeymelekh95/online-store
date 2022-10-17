@@ -5,7 +5,6 @@ import {
     Switch,
     IconButton,
 } from '@mui/material';
-
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import NightlightIcon from '@mui/icons-material/Nightlight';

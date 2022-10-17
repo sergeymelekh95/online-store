@@ -1,7 +1,5 @@
 import { Box, AppBar, Toolbar, Container } from '@mui/material';
-
 import { styled } from '@mui/material/styles';
-
 import { Logo } from '../components/Logo';
 import { SearchForm } from '../components/SearchForm';
 import { HeaderControls } from '../components/HeaderControls';

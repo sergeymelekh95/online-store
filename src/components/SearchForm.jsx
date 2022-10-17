@@ -1,7 +1,5 @@
 import { styled, alpha } from '@mui/material/styles';
-
 import { Box, InputBase } from '@mui/material';
-
 import SearchIcon from '@mui/icons-material/Search';
 
 const Search = styled('div')(({ theme }) => ({

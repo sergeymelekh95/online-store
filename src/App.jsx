@@ -1,5 +1,4 @@
 import { Stack } from '@mui/material';
-
 import { Header } from './layout/Header';
 import { MainSection } from './layout/MainSection';
 import { Footer } from './layout/Footer';

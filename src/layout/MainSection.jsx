@@ -1,5 +1,4 @@
 import { Grid, Container, Box } from '@mui/material';
-
 import { Main } from './Main';
 import { Saidbar } from './Saidbar';
 
