@@ -1,5 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const loadAllProducts = createAsyncThunk(
     '@@products/loadAllProducts',
@@ -9,7 +8,7 @@ export const loadAllProducts = createAsyncThunk(
 );
 
 export const loadProductsByCategory = createAsyncThunk(
-    '@@products/load-products-by-category',
+    '@@products/loadProductsByCategory',
     /*async*/ (category, { extra: { client, api } }) => {
         return client.get(api.getProductsByCategory(category));
     }
@@ -52,7 +51,7 @@ const productsSlice = createSlice({
                 state.status = 'received';
                 state.listOfProductsBySelectedCategory =
                     action.payload.data.products;
-            });
+            })
     },
 });
 

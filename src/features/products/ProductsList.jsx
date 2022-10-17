@@ -14,9 +14,9 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const ProductsList = ({ productsInfo, products }) => {
-    const { error, status, quantityOfAllProducts } = productsInfo;
-
     let [page, setPage] = useState(1);
+
+    const { error, status } = productsInfo;
 
     const PER_PAGE = 6;
     const count = Math.ceil(products.length / PER_PAGE);
