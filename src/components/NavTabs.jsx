@@ -6,7 +6,7 @@ import { DEFAULT_CATEGORY } from '../constants';
 
 export const NavTabs = () => {
     const routeMatch = useRouteMatch([
-        '/products/:category',
+        '/shop/*',
         '/about',
         '/delivery',
         '/payment',
@@ -31,9 +31,9 @@ export const NavTabs = () => {
                     >
                         <Tab
                             label='Shop'
-                            to={`/products/${DEFAULT_CATEGORY}`} // 'phone' will be get from redux or from saidbar nav
+                            to={`/shop/products/${DEFAULT_CATEGORY}`}
                             component={Link}
-                            value='/products/:category'
+                            value='/shop/*'
                         />
                         <Tab
                             label='About'

@@ -9,7 +9,7 @@ export const Logo = () => {
             color='secondary'
             underline='none'
             component={NavLink}
-            to={`/products/${DEFAULT_CATEGORY}`}
+            to={`/shop/products/${DEFAULT_CATEGORY}`}
         >
             <Stack direction='row' alignItems='center'>
                 <IconButton size='large'>

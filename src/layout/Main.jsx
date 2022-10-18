@@ -5,7 +5,8 @@ import { NotFound } from '../pages/NotFound';
 import { Delivery } from '../pages/Delivery';
 import { Payment } from '../pages/Payment';
 import { About } from '../pages/About';
-// import { Detail } from '../pages/Detail';
+import { Detail } from '../pages/Detail';
+import { Shop } from '../pages/Shop';
 import { DEFAULT_CATEGORY } from '../constants';
 
 export const Main = () => {
@@ -14,16 +15,23 @@ export const Main = () => {
             <Routes>
                 <Route
                     path='/'
-                    element={<Navigate to={`/products/${DEFAULT_CATEGORY}`} />}
+                    element={
+                        <Navigate
+                            to={`/shop/products/${DEFAULT_CATEGORY}`}
+                            replace
+                        />
+                    }
                 ></Route>
-                <Route
-                    path='/products/:category'
-                    element={<Products />}
-                ></Route>
-                {/* <Route path='/product/:id' element={<Detail />}></Route> */}
-                <Route path='/about' element={<About />}></Route>
-                <Route path='/delivery' element={<Delivery />}></Route>
-                <Route path='/payment' element={<Payment />}></Route>
+                <Route path='/shop' element={<Shop />}>
+                    <Route
+                        path='products/:category'
+                        element={<Products />}
+                    ></Route>
+                    <Route path='product/:id' element={<Detail />} />
+                </Route>
+                <Route index path='/about' element={<About />}></Route>
+                <Route index path='/delivery' element={<Delivery />}></Route>
+                <Route index path='/payment' element={<Payment />}></Route>
                 <Route path='*' element={<NotFound />}></Route>
             </Routes>
         </Box>
