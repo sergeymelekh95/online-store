@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
     Card,
     CardActions,
@@ -8,15 +9,7 @@ import {
     Rating,
 } from '@mui/material';
 
-export const MediaCard = ({
-    id,
-    title,
-    thumbnail,
-    description,
-    price,
-    rating,
-    discountPercentage,
-}) => {
+export const MediaCard = ({ title, thumbnail, price, rating, id }) => {
     return (
         <Card sx={{ maxWidth: 345, margin: '0 auto' }}>
             <CardMedia
@@ -37,7 +30,14 @@ export const MediaCard = ({
                 />
             </CardContent>
             <CardActions>
-                <Button variant='contained'>More</Button>
+                <Button
+                    variant='contained'
+                    component={Link}
+                    to={`/shop/product/${id}`}
+                    sx={{mr: 1}}
+                >
+                    More
+                </Button>
                 <Button variant='contained'>USD {price}</Button>
             </CardActions>
         </Card>

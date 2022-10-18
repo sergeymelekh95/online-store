@@ -43,7 +43,7 @@ export const Categories = () => {
                     <List component='div' disablePadding>
                         {categories.map((category) => (
                             <ListItemButton
-                                to={`/products/${category}`}
+                                to={`/shop/products/${category}`}
                                 component={Link}
                                 sx={{ pl: 4 }}
                                 key={category}
