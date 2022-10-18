@@ -20,7 +20,7 @@ const theme = createTheme({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
+    <React.Fragment>
         <Provider store={store}>
             <ThemeProvider theme={theme}>
                 <BrowserRouter basename='/online-store'>
@@ -28,5 +28,5 @@ root.render(
                 </BrowserRouter>
             </ThemeProvider>
         </Provider>
-    </React.StrictMode>
+    </React.Fragment>
 );
