@@ -5,7 +5,7 @@ import { NotFound } from '../pages/NotFound';
 import { Delivery } from '../pages/Delivery';
 import { Payment } from '../pages/Payment';
 import { About } from '../pages/About';
-import { Detail } from '../pages/Detail';
+import { Detail } from '../features/details/Detail';
 import { Shop } from '../pages/Shop';
 import { DEFAULT_CATEGORY } from '../constants';
 
