@@ -1,6 +1,7 @@
 import { styled, alpha } from '@mui/material/styles';
-import { Box, InputBase } from '@mui/material';
+import { Box, InputBase, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { useSearch } from './useSearch';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -43,18 +44,33 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const SearchForm = () => {
+    const [value, handleSubmit, handleChange] = useSearch();
+
     return (
-        <Box component='form' noValidate autoComplete='off' flexGrow={1}>
-            <Search>
+        <Box
+            component='form'
+            noValidate
+            autoComplete='off'
+            flexGrow={1}
+            sx={{ display: 'flex', gap: 1 }}
+            onSubmit={handleSubmit}
+        >
+            <Search sx={{ width: '100%' }}>
                 <SearchIconWrapper>
                     <SearchIcon />
                 </SearchIconWrapper>
                 <StyledInputBase
-                    placeholder='Search…'
                     fullWidth
+                    placeholder='Search…'
                     inputProps={{ 'aria-label': 'search' }}
+                    type='search'
+                    value={value}
+                    onChange={handleChange}
                 />
             </Search>
+            <Button type='submit' variant='contained'>
+                Search
+            </Button>
         </Box>
     );
 };

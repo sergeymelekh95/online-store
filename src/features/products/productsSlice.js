@@ -14,11 +14,19 @@ export const loadProductsByCategory = createAsyncThunk(
     }
 );
 
+export const loadProductsByKeyword = createAsyncThunk(
+    '@@products/loadProductsByKeyword',
+    /*async*/ (keyword, { extra: { client, api } }) => {
+        return client.get(api.searchProductsByKeyword(keyword));
+    }
+);
+
 const initialState = {
     status: 'idle',
     error: null,
     listOfAllProducts: [],
     listOfProductsBySelectedCategory: [],
+    listOfFoundProducts: [],
 };
 
 const productsSlice = createSlice({
@@ -52,6 +60,18 @@ const productsSlice = createSlice({
                 state.listOfProductsBySelectedCategory =
                     action.payload.data.products;
             })
+            .addCase(loadProductsByKeyword.pending, (state, action) => {
+                state.status = 'loading';
+                state.error = null;
+            })
+            .addCase(loadProductsByKeyword.rejected, (state, action) => {
+                state.status = 'rejected';
+                state.error = action.payload || action.error.message;
+            })
+            .addCase(loadProductsByKeyword.fulfilled, (state, action) => {
+                state.status = 'received';
+                state.listOfFoundProducts = action.payload.data.products;
+            });
     },
 });
 
@@ -64,7 +84,8 @@ export const selectProductsInfo = (state) => ({
     error: state.products.error,
     quantityOfAllProducts: state.products.listOfAllProducts.length,
 });
-
 export const selectAllProducts = (state) => state.products.listOfAllProducts;
 export const selectProductsByCategory = (state) =>
     state.products.listOfProductsBySelectedCategory;
+export const selectFoundProducts = (state) =>
+    state.products.listOfFoundProducts;

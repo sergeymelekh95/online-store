@@ -12,13 +12,19 @@ export const Products = () => {
         productsAll,
         selectedProductsByCategory,
         DEFAULT_CATEGORY,
+        search,
+        foundProducts,
     ] = useProducts();
 
     return (
         <>
             <Toolbar sx={{ justifyContent: 'space-between' }}>
                 <Typography variant='h4'>
-                    {capitalize(removeDash(category))}
+                    {search
+                        ? foundProducts.length > 0
+                            ? `Search results: ${foundProducts.length} items found`
+                            : 'Nothing was found'
+                        : capitalize(removeDash(category))}
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography variant='h5'>Sort by:</Typography>
@@ -28,7 +34,9 @@ export const Products = () => {
             <ProductsList
                 productsInfo={productsInfo}
                 products={
-                    category === DEFAULT_CATEGORY
+                    search
+                        ? foundProducts
+                        : category === DEFAULT_CATEGORY
                         ? productsAll
                         : selectedProductsByCategory
                 }

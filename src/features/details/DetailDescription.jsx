@@ -12,7 +12,7 @@ export const DetailDescription = ({
 }) => {
     return (
         <Grid item lg={6} sx={{ position: 'relative' }}>
-            <Typography variant='h4' component='h4'>
+            <Typography variant='h4' component='h4' sx={{ maxWidth: '390px' }}>
                 {title}
             </Typography>
             <Rating
