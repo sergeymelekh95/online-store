@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import DiscountIcon from '@mui/icons-material/Discount';
-import { MIN_VALUE_FOR_DISCOUNT, CURRENCY } from '../constants';
-import { isDiscount } from '../functions/isDiscount';
+import { CURRENCY } from '../constants';
 import { countPrice } from '../functions/countPrice';
 import {
     Card,
@@ -23,7 +22,7 @@ export const MediaCard = ({
 }) => {
     return (
         <Card sx={{ maxWidth: 345, margin: '0 auto', position: 'relative' }}>
-            {isDiscount(discountPercentage, MIN_VALUE_FOR_DISCOUNT) && (
+            {!!discountPercentage && (
                 <DiscountIcon
                     fontSize='large'
                     sx={{ position: 'absolute', bottom: 5, right: 0 }}
@@ -57,13 +56,13 @@ export const MediaCard = ({
                 </Button>
                 <Button variant='contained'>
                     {CURRENCY}{' '}
-                    {countPrice(
-                        price,
-                        discountPercentage,
-                        MIN_VALUE_FOR_DISCOUNT
-                    ).toFixed()}
+                    {discountPercentage
+                        ? parseInt(
+                              countPrice(price, discountPercentage) * 100
+                          ) / 100
+                        : price}
                 </Button>
-                {isDiscount(discountPercentage, MIN_VALUE_FOR_DISCOUNT) && (
+                {!!discountPercentage && (
                     <Typography
                         ml={1}
                         sx={{ textDecoration: 'line-through' }}
