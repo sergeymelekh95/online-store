@@ -1,4 +1,5 @@
-export const countPrice = (price, discountPercentage, minDiscountPercentage) =>
-    discountPercentage > minDiscountPercentage
-        ? price - (price * discountPercentage) / 100
-        : price;
+export const countPrice = (price, discountPercentage) => {
+    if (discountPercentage) {
+        return price - (price * discountPercentage) / 100;
+    }
+};

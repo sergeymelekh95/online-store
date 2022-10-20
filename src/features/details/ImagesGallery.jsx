@@ -17,7 +17,7 @@ export const ImagesGallery = ({ images }) => {
         useGallery(images);
 
     return (
-        <Grid item lg={6}>
+        <Grid item lg={6} mb={7}>
             <ImageList
                 sx={{
                     width: 500,
