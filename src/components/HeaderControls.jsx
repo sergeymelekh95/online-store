@@ -11,7 +11,7 @@ import NightlightIcon from '@mui/icons-material/Nightlight';
 
 export const HeaderControls = () => {
     return (
-        <Box>
+        <Box sx={{minWidth: '183px'}}>
             <IconButton size='large'>
                 <Badge badgeContent={5} color='error'>
                     <ShoppingBasketOutlinedIcon />

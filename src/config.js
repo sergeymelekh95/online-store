@@ -9,4 +9,4 @@ export const getListOfCategories = `${ALL_PRODUCTS}/categories`;
 
 export const getProductById = (id) => `${ALL_PRODUCTS}/${id}`;
 
-export const searchProductByName = (name) => `${ALL_PRODUCTS}/search?q=${name}`;
+export const searchProductsByKeyword = (name) => `${ALL_PRODUCTS}/search?q=${name}`;
