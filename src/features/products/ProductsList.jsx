@@ -20,6 +20,7 @@ export const ProductsList = ({ productsInfo, products }) => {
 
     const PER_PAGE = 6;
     const count = Math.ceil(products.length / PER_PAGE);
+
     const data = usePagination(products, PER_PAGE);
 
     const handleChange = (event, page) => {

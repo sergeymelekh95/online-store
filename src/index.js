@@ -23,7 +23,7 @@ root.render(
     <React.Fragment>
         <Provider store={store}>
             <ThemeProvider theme={theme}>
-                <BrowserRouter basename='/online-store'>
+                <BrowserRouter>
                     <App />
                 </BrowserRouter>
             </ThemeProvider>

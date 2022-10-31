@@ -4,46 +4,37 @@ import { useParams, useLocation } from 'react-router-dom';
 import { DEFAULT_CATEGORY } from '../../constants';
 import {
     selectProductsInfo,
-    selectAllProducts,
     loadAllProducts,
     loadProductsByCategory,
-    selectProductsByCategory,
     loadProductsByKeyword,
-    selectFoundProducts,
+    selectProducts,
+    selectFilteredProducts
 } from './productsSlice';
+import {selectCurrentSort} from '../filters/filtersSlice';
 
 export const useProducts = () => {
     const dispatch = useDispatch();
     const { category } = useParams();
     const { pathname, search } = useLocation();
     const productsInfo = useSelector(selectProductsInfo);
-    const productsAll = useSelector(selectAllProducts);
-    const selectedProductsByCategory = useSelector(selectProductsByCategory);
-    const foundProducts = useSelector(selectFoundProducts);
+    const currentSort = useSelector(selectCurrentSort);
+    const products = useSelector((state) => selectFilteredProducts(state, currentSort));
 
     useEffect(() => {
         if (search) {
             dispatch(loadProductsByKeyword(search.split('=')[1].toLowerCase()));
         }
-        if (
-            category === DEFAULT_CATEGORY &&
-            !productsInfo.quantityOfAllProducts
-        ) {
+
+        if (!search && category === DEFAULT_CATEGORY) {
             dispatch(loadAllProducts());
         }
 
-        if (category !== DEFAULT_CATEGORY) {
+        if (!search && category !== DEFAULT_CATEGORY) {
             dispatch(loadProductsByCategory(category));
         }
-    }, [category, productsInfo.quantityOfAllProducts, dispatch, search]);
+    }, [category, dispatch, search]);
 
-    return [
-        category,
-        productsInfo,
-        productsAll,
-        selectedProductsByCategory,
-        DEFAULT_CATEGORY,
-        search,
-        foundProducts,
-    ];
+    useEffect(() => {}, [currentSort])
+
+    return [category, productsInfo, products, search];
 };

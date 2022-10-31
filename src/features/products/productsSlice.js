@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { CHEAP, EXPENSIVE, POPULAR } from '../../constants';
 
 export const loadAllProducts = createAsyncThunk(
     '@@products/loadAllProducts',
@@ -24,9 +25,7 @@ export const loadProductsByKeyword = createAsyncThunk(
 const initialState = {
     status: 'idle',
     error: null,
-    listOfAllProducts: [],
-    listOfProductsBySelectedCategory: [],
-    listOfFoundProducts: [],
+    products: [],
 };
 
 const productsSlice = createSlice({
@@ -45,7 +44,7 @@ const productsSlice = createSlice({
             })
             .addCase(loadAllProducts.fulfilled, (state, action) => {
                 state.status = 'received';
-                state.listOfAllProducts = action.payload.data.products;
+                state.products = action.payload.data.products;
             })
             .addCase(loadProductsByCategory.pending, (state, action) => {
                 state.status = 'loading';
@@ -57,8 +56,7 @@ const productsSlice = createSlice({
             })
             .addCase(loadProductsByCategory.fulfilled, (state, action) => {
                 state.status = 'received';
-                state.listOfProductsBySelectedCategory =
-                    action.payload.data.products;
+                state.products = action.payload.data.products;
             })
             .addCase(loadProductsByKeyword.pending, (state, action) => {
                 state.status = 'loading';
@@ -70,7 +68,7 @@ const productsSlice = createSlice({
             })
             .addCase(loadProductsByKeyword.fulfilled, (state, action) => {
                 state.status = 'received';
-                state.listOfFoundProducts = action.payload.data.products;
+                state.products = action.payload.data.products;
             });
     },
 });
@@ -82,10 +80,26 @@ export const productReducer = productsSlice.reducer;
 export const selectProductsInfo = (state) => ({
     status: state.products.status,
     error: state.products.error,
-    quantityOfAllProducts: state.products.listOfAllProducts.length,
 });
-export const selectAllProducts = (state) => state.products.listOfAllProducts;
-export const selectProductsByCategory = (state) =>
-    state.products.listOfProductsBySelectedCategory;
-export const selectFoundProducts = (state) =>
-    state.products.listOfFoundProducts;
+export const selectProducts = (state) => state.products.products;
+export const selectFilteredProducts = (state, currentSort) => {
+    if (currentSort === CHEAP) {
+        return state.products.products
+            .slice()
+            .sort((a, b) => a.price - b.price);
+    }
+
+    if (currentSort === EXPENSIVE) {
+        return state.products.products
+            .slice()
+            .sort((a, b) => b.price - a.price);
+    }
+
+    if (currentSort === POPULAR) {
+        return state.products.products
+            .slice()
+            .sort((a, b) => b.rating - a.rating);
+    }
+
+    return state;
+};
