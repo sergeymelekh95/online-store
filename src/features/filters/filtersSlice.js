@@ -3,7 +3,7 @@ import { EXPENSIVE } from '../../constants';
 
 const initialState = {
     currentSort: EXPENSIVE,
-    // price: [200, 1000],
+    price: [],
 };
 
 const filtersSlice = createSlice({
@@ -13,14 +13,14 @@ const filtersSlice = createSlice({
         setSort: (state, action) => {
             state.currentSort = action.payload;
         },
-        // setFilterByPrice: (state, action) => {
-        //     state.price = action.payload;
-        // },
+        setFilteringParametersByPrice: (state, action) => {
+            state.price = action.payload;
+        },
     },
 });
 
 //actions
-export const { setSort, /*setFilterByPrice*/ } = filtersSlice.actions;
+export const { setSort, setFilteringParametersByPrice } = filtersSlice.actions;
 
 //reducers
 export const filtersReducer = filtersSlice.reducer;

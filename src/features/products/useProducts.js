@@ -7,10 +7,9 @@ import {
     loadAllProducts,
     loadProductsByCategory,
     loadProductsByKeyword,
-    selectProducts,
-    selectFilteredProducts
+    selectFilteredProducts,
 } from './productsSlice';
-import {selectCurrentSort} from '../filters/filtersSlice';
+import { selectCurrentSort, selectPrice } from '../filters/filtersSlice';
 
 export const useProducts = () => {
     const dispatch = useDispatch();
@@ -18,7 +17,10 @@ export const useProducts = () => {
     const { pathname, search } = useLocation();
     const productsInfo = useSelector(selectProductsInfo);
     const currentSort = useSelector(selectCurrentSort);
-    const products = useSelector((state) => selectFilteredProducts(state, currentSort));
+    const price = useSelector(selectPrice);
+    const products = useSelector((state) =>
+        selectFilteredProducts(state, currentSort, price)
+    );
 
     useEffect(() => {
         if (search) {
@@ -34,7 +36,7 @@ export const useProducts = () => {
         }
     }, [category, dispatch, search]);
 
-    useEffect(() => {}, [currentSort])
+    useEffect(() => {}, [currentSort, price]);
 
     return [category, productsInfo, products, search];
 };

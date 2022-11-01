@@ -1,16 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 import { SORTING_TYPES } from '../../constants';
 import { capitalize } from '../../functions/capitalize';
-import { selectCurrentSort, setSort } from './filtersSlice';
+import useSort from './useSort';
 
 export const SortSelect = () => {
-    const dispatch = useDispatch();
-    const currentSort = useSelector(selectCurrentSort);
-
-    const handleChange = (event) => {
-        dispatch(setSort(event.target.value));
-    };
+    const [currentSort, handleChange] = useSort();
 
     return (
         <Box sx={{ minWidth: 150 }}>

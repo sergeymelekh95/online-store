@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { CHEAP, EXPENSIVE, POPULAR } from '../../constants';
+import { filterByPrice } from '../../functions/filterByPrice';
 
 export const loadAllProducts = createAsyncThunk(
     '@@products/loadAllProducts',
@@ -82,21 +83,21 @@ export const selectProductsInfo = (state) => ({
     error: state.products.error,
 });
 export const selectProducts = (state) => state.products.products;
-export const selectFilteredProducts = (state, currentSort) => {
+export const selectFilteredProducts = (state, currentSort, price) => {
     if (currentSort === CHEAP) {
-        return state.products.products
+        return filterByPrice(state.products.products, price)
             .slice()
             .sort((a, b) => a.price - b.price);
     }
 
     if (currentSort === EXPENSIVE) {
-        return state.products.products
+        return filterByPrice(state.products.products, price)
             .slice()
             .sort((a, b) => b.price - a.price);
     }
 
     if (currentSort === POPULAR) {
-        return state.products.products
+        return filterByPrice(state.products.products, price)
             .slice()
             .sort((a, b) => b.rating - a.rating);
     }

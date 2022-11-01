@@ -8,14 +8,13 @@ import {
 } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { RangeSlider } from './RangeSlider';
+import { RangeSlider } from '../features/filters/RangeSlider';
 
 export const Filters = () => {
     const [openFilter, setOpenFilter] = useState(true);
 
-    const handleFilter = () => {
-        setOpenFilter(!openFilter);
-    };
+    const handleFilter = () => setOpenFilter(!openFilter);
+
     return (
         <>
             <ListItemButton onClick={handleFilter}>
