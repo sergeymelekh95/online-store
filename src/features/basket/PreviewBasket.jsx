@@ -1,4 +1,4 @@
-import { Badge, IconButton, Popover } from '@mui/material';
+import { Badge, IconButton, Popover, Typography } from '@mui/material';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import { BasketList } from '../../components/BasketList';
 import { usePreviewBasket } from './usePreviewBasket';
@@ -32,8 +32,11 @@ export const PreviewBasket = () => {
                     horizontal: 'center',
                 }}
             >
-                <BasketList products={basketProducts} />
-
+                {basketProducts.length ? (
+                    <BasketList products={basketProducts} />
+                ) : (
+                    <Typography sx={{ p: 3 }}>Your basket is empty</Typography>
+                )}
             </Popover>
         </>
     );

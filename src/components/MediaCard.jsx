@@ -11,11 +11,12 @@ import {
     Typography,
     Rating,
 } from '@mui/material';
-import { useAddToBasket } from '../hooks/useAddToBasket';
+import { useHandleBasket } from '../hooks/useHandleBasket';
+import { addProduct } from '../features/basket/basketSlice';
 
 export const MediaCard = (product) => {
     const { title, thumbnail, price, rating, id, discountPercentage } = product;
-    const [handleClick] = useAddToBasket();
+    const [handleClick] = useHandleBasket(addProduct);
 
     return (
         <Card sx={{ maxWidth: 345, margin: '0 auto', position: 'relative' }}>
@@ -55,12 +56,7 @@ export const MediaCard = (product) => {
                     variant='contained'
                     onClick={() => handleClick(product)}
                 >
-                    {CURRENCY}{' '}
-                    {discountPercentage
-                        ? parseInt(
-                              countPrice(price, discountPercentage) * 100
-                          ) / 100
-                        : price}
+                    {CURRENCY} {price}
                 </Button>
                 {!!discountPercentage && (
                     <Typography
@@ -68,7 +64,12 @@ export const MediaCard = (product) => {
                         sx={{ textDecoration: 'line-through' }}
                         component='span'
                     >
-                        {CURRENCY} {price}
+                        {CURRENCY}{' '}
+                        {discountPercentage
+                            ? parseInt(
+                                  countPrice(price, discountPercentage) * 100
+                              ) / 100
+                            : price}
                     </Typography>
                 )}
             </CardActions>

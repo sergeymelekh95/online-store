@@ -10,9 +10,20 @@ export const basketSlice = createSlice({
     initialState,
     reducers: {
         addProduct: (state, { payload }) => {
-            !hasId(state.products, payload.id) && state.products.push(payload);
+            !hasId(state.products, payload.id) &&
+                state.products.push({ ...payload, quantity: 1 });
         },
-        removeProduct: (state, action) => {},
+        removeProduct: (state, { payload }) => {
+            //filter create new array
+            return {
+                ...state,
+                products: state.products.filter(
+                    (product) => product.id !== payload
+                ),
+            };
+        },
+        addQuantity: (state, { payload }) => {},
+        minusQuantity: (state, { payload }) => {},
     },
 });
 
@@ -24,4 +35,3 @@ export const basketReducer = basketSlice.reducer;
 
 //selectors
 export const selectBasketProducts = (state) => state.basket.products;
-// export const selectQuantityProducts = (state) => state.basket.products.length;

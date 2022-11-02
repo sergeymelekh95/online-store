@@ -1,32 +1,29 @@
-import {
-    ListItemText,
-    List,
-    ListItem,
-    Avatar,
-    ListItemAvatar,
-    Typography,
-} from '@mui/material';
+import { List, ListItem, Typography, Button } from '@mui/material';
+import { CURRENCY } from '../constants';
+import { BasketItem } from './BasketItem';
 
 export const BasketList = ({ products }) => {
-    console.log(products);
+    const total = products.reduce(
+        (acc, cur) => (acc + cur.price) * cur.quantity,
+        0
+    );
 
     return (
         <List>
             {products.map((product) => (
-                <ListItem key={product.id}>
-                    <ListItemAvatar>
-                        <Avatar
-                            sx={{ height: '80px', width: '80px' }}
-                            variant='rounded'
-                            alt={product.title}
-                            src={product.thumbnail}
-                        />
-                    </ListItemAvatar>
-                    <ListItemText>
-                        <Typography>{product.title}</Typography>
-                    </ListItemText>
-                </ListItem>
+                <BasketItem key={product.id} {...product} />
             ))}
+            <ListItem
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                }}
+            >
+                <Typography variant='h6'>
+                    Total: {total} {CURRENCY}
+                </Typography>
+                <Button variant='outlined'>Go to basket</Button>
+            </ListItem>
         </List>
     );
 };
