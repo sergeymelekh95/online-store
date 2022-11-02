@@ -11,7 +11,6 @@ export const useDetail = () => {
     const dispatch = useDispatch();
 
     const { id } = useParams();
-
     const product = useSelector(selectProductById);
     const { status, error } = useSelector(selectProductInfo);
 

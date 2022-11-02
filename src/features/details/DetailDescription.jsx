@@ -2,14 +2,12 @@ import { Typography, Grid, Button, Rating, Box } from '@mui/material';
 import DiscountIcon from '@mui/icons-material/Discount';
 import { CURRENCY } from '../../constants';
 import { countPrice } from '../../functions/countPrice';
+import { useAddToBasket } from '../../hooks/useAddToBasket';
 
-export const DetailDescription = ({
-    title,
-    price,
-    description,
-    rating,
-    discountPercentage,
-}) => {
+export const DetailDescription = (product) => {
+    const { title, price, description, rating, discountPercentage } = product;
+    const [handleClick] = useAddToBasket();
+
     return (
         <Grid item lg={6} sx={{ position: 'relative' }}>
             <Typography variant='h4' component='h4' sx={{ maxWidth: '390px' }}>
@@ -54,7 +52,12 @@ export const DetailDescription = ({
             </Typography>
             <br />
             <Box textAlign='end' pr={4}>
-                <Button variant='contained'>Add to cart</Button>
+                <Button
+                    variant='contained'
+                    onClick={() => handleClick(product)}
+                >
+                    Add to cart
+                </Button>
             </Box>
         </Grid>
     );
