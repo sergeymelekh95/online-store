@@ -11,12 +11,14 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CURRENCY } from '../constants';
-import { removeProduct } from '../features/basket/basketSlice';
-import { useHandleBasket } from '../hooks/useHandleBasket';
+import { BasketButton } from './BasketButton';
+import {
+    removeProduct,
+    addQuantity,
+    minusQuantity,
+} from '../features/basket/basketSlice';
 
 export const BasketItem = ({ id, title, thumbnail, quantity, price }) => {
-    const [handleClick] = useHandleBasket(removeProduct);
-
     return (
         <ListItem key={id}>
             <ListItemAvatar>
@@ -33,9 +35,9 @@ export const BasketItem = ({ id, title, thumbnail, quantity, price }) => {
                     {price * quantity} {CURRENCY}
                 </Typography>
                 <Box>
-                    <Button variant='outlined'>
+                    <BasketButton value={id} action={addQuantity} variant='outlined'>
                         <AddIcon />
-                    </Button>
+                    </BasketButton>
                     <Typography
                         component='span'
                         sx={{
@@ -46,14 +48,14 @@ export const BasketItem = ({ id, title, thumbnail, quantity, price }) => {
                     >
                         {quantity}
                     </Typography>
-                    <Button variant='outlined'>
+                    <BasketButton value={id} action={minusQuantity} variant='outlined'>
                         <RemoveIcon />
-                    </Button>
+                    </BasketButton>
                 </Box>
             </ListItemText>
-            <Button variant='outlined' onClick={() => handleClick(id)}>
+            <BasketButton value={id} action={removeProduct} variant='outlined'>
                 <DeleteIcon />
-            </Button>
+            </BasketButton>
         </ListItem>
     );
 };

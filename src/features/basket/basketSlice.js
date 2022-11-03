@@ -22,13 +22,32 @@ export const basketSlice = createSlice({
                 ),
             };
         },
-        addQuantity: (state, { payload }) => {},
-        minusQuantity: (state, { payload }) => {},
+        addQuantity: (state, { payload }) => {
+            const index = state.products.findIndex(
+                (product) => product.id === payload
+            );
+            state.products.splice(index, 1, {
+                ...state.products[index],
+                quantity: state.products[index].quantity + 1,
+            });
+        },
+        minusQuantity: (state, { payload }) => {
+            const index = state.products.findIndex(
+                (product) => product.id === payload
+            );
+            if (state.products[index].quantity > 1) {
+                state.products.splice(index, 1, {
+                    ...state.products[index],
+                    quantity: state.products[index].quantity - 1,
+                });
+            }
+        },
     },
 });
 
 //actions
-export const { addProduct, removeProduct } = basketSlice.actions;
+export const { addProduct, removeProduct, addQuantity, minusQuantity } =
+    basketSlice.actions;
 
 //reducers
 export const basketReducer = basketSlice.reducer;

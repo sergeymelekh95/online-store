@@ -11,12 +11,11 @@ import {
     Typography,
     Rating,
 } from '@mui/material';
-import { useHandleBasket } from '../hooks/useHandleBasket';
+import { BasketButton } from './BasketButton';
 import { addProduct } from '../features/basket/basketSlice';
 
 export const MediaCard = (product) => {
     const { title, thumbnail, price, rating, id, discountPercentage } = product;
-    const [handleClick] = useHandleBasket(addProduct);
 
     return (
         <Card sx={{ maxWidth: 345, margin: '0 auto', position: 'relative' }}>
@@ -52,12 +51,13 @@ export const MediaCard = (product) => {
                 >
                     More
                 </Button>
-                <Button
+                <BasketButton
+                    action={addProduct}
+                    value={product}
                     variant='contained'
-                    onClick={() => handleClick(product)}
                 >
                     {CURRENCY} {price}
-                </Button>
+                </BasketButton>
                 {!!discountPercentage && (
                     <Typography
                         ml={1}
