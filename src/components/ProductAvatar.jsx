@@ -1,7 +1,11 @@
 import { Avatar } from '@mui/material';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { PreviewBasketContext } from '../features/basket/PreviewBasket';
 
 export const ProductAvatar = ({ isBasketPath, title, thumbnail, id }) => {
+    const handleClose = useContext(PreviewBasketContext);
+
     return (
         <Avatar
             sx={
@@ -14,6 +18,7 @@ export const ProductAvatar = ({ isBasketPath, title, thumbnail, id }) => {
             src={thumbnail}
             component={Link}
             to={`/shop/product/${id}`}
+            onClick={!isBasketPath ? handleClose : null}
         />
     );
 };

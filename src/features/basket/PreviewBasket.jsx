@@ -11,6 +11,9 @@ import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlin
 import { BasketList } from '../../components/BasketList';
 import { useBasket } from './useBasket';
 import { useBasketPath } from '../../hooks/useBasketPath';
+import { createContext } from 'react';
+
+export const PreviewBasketContext = createContext();
 
 export const PreviewBasket = () => {
     const [basketProducts, id, handleClick, open, anchorEl, handleClose] =
@@ -45,7 +48,9 @@ export const PreviewBasket = () => {
             >
                 {basketProducts.length ? (
                     <>
-                        <BasketList products={basketProducts} />
+                        <PreviewBasketContext.Provider value={handleClose}>
+                            <BasketList products={basketProducts} />
+                        </PreviewBasketContext.Provider>
                         <Box
                             sx={{
                                 width: '100%',

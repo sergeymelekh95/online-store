@@ -6,6 +6,8 @@ import { BasketButton } from './BasketButton';
 import { addQuantity, minusQuantity } from '../features/basket/basketSlice';
 import { OldPrice } from './OldPrice';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { PreviewBasketContext } from '../features/basket/PreviewBasket';
 
 export const ListItemBody = ({
     isBasketPath,
@@ -15,6 +17,8 @@ export const ListItemBody = ({
     id,
     discountPercentage,
 }) => {
+    const handleClose = useContext(PreviewBasketContext);
+
     return (
         <Box
             sx={
@@ -33,6 +37,7 @@ export const ListItemBody = ({
                 sx={{ minWidth: 250, fontSize: 18, textDecoration: 'none' }}
                 component={Link}
                 to={`/shop/product/${id}`}
+                onClick={!isBasketPath ? handleClose : null}
             >
                 {capitalize(title)}
             </Typography>
