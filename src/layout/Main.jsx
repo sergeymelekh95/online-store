@@ -7,6 +7,7 @@ import { Payment } from '../pages/Payment';
 import { About } from '../pages/About';
 import { Detail } from '../features/details/Detail';
 import { Shop } from '../pages/Shop';
+import { Basket } from '../features/basket/Basket';
 import { DEFAULT_CATEGORY } from '../constants';
 
 export const Main = () => {
@@ -28,10 +29,12 @@ export const Main = () => {
                         element={<Products />}
                     ></Route>
                     <Route path='product/:id' element={<Detail />} />
+                    <Route path='basket' element={<Basket />}></Route>
                 </Route>
                 <Route index path='/about' element={<About />}></Route>
                 <Route index path='/delivery' element={<Delivery />}></Route>
                 <Route index path='/payment' element={<Payment />}></Route>
+
                 <Route path='*' element={<NotFound />}></Route>
             </Routes>
         </Box>

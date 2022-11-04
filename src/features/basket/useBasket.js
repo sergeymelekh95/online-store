@@ -4,7 +4,7 @@ import { selectBasketProducts } from './basketSlice';
 //если не надо будет удалить из зависимосетй
 // import { useSnackbar } from 'notistack';
 
-export const usePreviewBasket = () => {
+export const useBasket = () => {
     // const { enqueueSnackbar } = useSnackbar();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -22,5 +22,5 @@ export const usePreviewBasket = () => {
         // }
     }, [basketProducts /*enqueueSnackbar*/]);
 
-    return [id, handleClick, basketProducts, open, anchorEl, handleClose];
+    return [basketProducts, id, handleClick, open, anchorEl, handleClose];
 };

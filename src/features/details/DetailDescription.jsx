@@ -1,9 +1,10 @@
 import { Typography, Grid, Button, Rating, Box } from '@mui/material';
 import DiscountIcon from '@mui/icons-material/Discount';
 import { CURRENCY } from '../../constants';
-import { countPrice } from '../../functions/countPrice';
+import { countOldPrice } from '../../functions/countOldPrice';
 import { useHandleBasket } from '../../hooks/useHandleBasket';
 import { addProduct } from '../basket/basketSlice';
+import { OldPrice } from '../../components/OldPrice';
 
 export const DetailDescription = (product) => {
     const { title, price, description, rating, discountPercentage } = product;
@@ -33,19 +34,11 @@ export const DetailDescription = (product) => {
                     {CURRENCY} {price}
                 </Typography>{' '}
                 {!!discountPercentage && (
-                    <Typography
-                        sx={{ textDecoration: 'line-through' }}
-                        component='span'
+                    <OldPrice
                         variant='h5'
-                        color='primary'
-                    >
-                        {CURRENCY}{' '}
-                        {discountPercentage
-                            ? parseInt(
-                                  countPrice(price, discountPercentage) * 100
-                              ) / 100
-                            : price}
-                    </Typography>
+                        price={price}
+                        discountPercentage={discountPercentage}
+                    />
                 )}
             </Box>
             <Typography component='p' mb={3}>

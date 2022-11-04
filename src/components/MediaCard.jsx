@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import DiscountIcon from '@mui/icons-material/Discount';
 import { CURRENCY } from '../constants';
-import { countPrice } from '../functions/countPrice';
 import {
     Card,
     CardActions,
@@ -10,9 +9,11 @@ import {
     Button,
     Typography,
     Rating,
+    capitalize,
 } from '@mui/material';
 import { BasketButton } from './BasketButton';
 import { addProduct } from '../features/basket/basketSlice';
+import { OldPrice } from './OldPrice';
 
 export const MediaCard = (product) => {
     const { title, thumbnail, price, rating, id, discountPercentage } = product;
@@ -33,7 +34,7 @@ export const MediaCard = (product) => {
             />
             <CardContent sx={{ textAlign: 'start' }}>
                 <Typography gutterBottom variant='h5' component='h5'>
-                    {title}
+                    {capitalize(title)}
                 </Typography>
                 <Rating
                     name='half-rating-read'
@@ -59,18 +60,10 @@ export const MediaCard = (product) => {
                     {CURRENCY} {price}
                 </BasketButton>
                 {!!discountPercentage && (
-                    <Typography
-                        ml={1}
-                        sx={{ textDecoration: 'line-through' }}
-                        component='span'
-                    >
-                        {CURRENCY}{' '}
-                        {discountPercentage
-                            ? parseInt(
-                                  countPrice(price, discountPercentage) * 100
-                              ) / 100
-                            : price}
-                    </Typography>
+                    <OldPrice
+                        price={price}
+                        discountPercentage={discountPercentage}
+                    />
                 )}
             </CardActions>
         </Card>

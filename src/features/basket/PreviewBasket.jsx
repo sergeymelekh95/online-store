@@ -1,18 +1,29 @@
-import { Badge, IconButton, Popover, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import {
+    Badge,
+    IconButton,
+    Popover,
+    Typography,
+    Button,
+    Box,
+} from '@mui/material';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import { BasketList } from '../../components/BasketList';
-import { usePreviewBasket } from './usePreviewBasket';
+import { useBasket } from './useBasket';
+import { useBasketPath } from '../../hooks/useBasketPath';
 
 export const PreviewBasket = () => {
-    const [id, handleClick, basketProducts, open, anchorEl, handleClose] =
-        usePreviewBasket();
+    const [basketProducts, id, handleClick, open, anchorEl, handleClose] =
+        useBasket();
+
+    const [isBasketPath] = useBasketPath();
 
     return (
         <>
             <IconButton
                 size='large'
                 aria-describedby={id}
-                onClick={handleClick}
+                onClick={!isBasketPath ? handleClick : null}
             >
                 <Badge badgeContent={basketProducts.length} color='error'>
                     <ShoppingBasketOutlinedIcon />
@@ -33,7 +44,27 @@ export const PreviewBasket = () => {
                 }}
             >
                 {basketProducts.length ? (
-                    <BasketList products={basketProducts} />
+                    <>
+                        <BasketList products={basketProducts} />
+                        <Box
+                            sx={{
+                                width: '100%',
+                                display: 'flex',
+                                justifyContent: 'end',
+                                mb: 2,
+                                pr: 2,
+                            }}
+                        >
+                            <Button
+                                variant='outlined'
+                                component={Link}
+                                to={`/shop/basket`}
+                                onClick={handleClose}
+                            >
+                                Go to basket
+                            </Button>
+                        </Box>
+                    </>
                 ) : (
                     <Typography sx={{ p: 3 }}>Your basket is empty</Typography>
                 )}

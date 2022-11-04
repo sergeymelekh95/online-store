@@ -1,58 +1,32 @@
-import {
-    ListItemText,
-    ListItem,
-    Avatar,
-    ListItemAvatar,
-    Typography,
-    Box,
-    Button,
-} from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import { ListItem, ListItemAvatar } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { CURRENCY } from '../constants';
 import { BasketButton } from './BasketButton';
-import {
-    removeProduct,
-    addQuantity,
-    minusQuantity,
-} from '../features/basket/basketSlice';
+import { removeProduct } from '../features/basket/basketSlice';
+import { useBasketPath } from '../hooks/useBasketPath';
+import { ProductAvatar } from './ProductAvatar';
+import { ListItemBody } from './ListItemBody';
 
-export const BasketItem = ({ id, title, thumbnail, quantity, price }) => {
+export const BasketItem = ({ id, title, thumbnail, quantity, price, discountPercentage }) => {
+    const [isBasketPath] = useBasketPath();
+
     return (
         <ListItem key={id}>
             <ListItemAvatar>
-                <Avatar
-                    sx={{ height: '75px', width: '75px', mr: 2 }}
-                    variant='rounded'
-                    alt={title}
-                    src={thumbnail}
+                <ProductAvatar
+                    id={id}
+                    isBasketPath={isBasketPath}
+                    title={title}
+                    thumbnail={thumbnail}
                 />
             </ListItemAvatar>
-            <ListItemText sx={{ mr: 3 }}>
-                <Typography>{title}</Typography>
-                <Typography>
-                    {price * quantity} {CURRENCY}
-                </Typography>
-                <Box>
-                    <BasketButton value={id} action={addQuantity} variant='outlined'>
-                        <AddIcon />
-                    </BasketButton>
-                    <Typography
-                        component='span'
-                        sx={{
-                            display: 'inline-block',
-                            textAlign: 'center',
-                            minWidth: 30,
-                        }}
-                    >
-                        {quantity}
-                    </Typography>
-                    <BasketButton value={id} action={minusQuantity} variant='outlined'>
-                        <RemoveIcon />
-                    </BasketButton>
-                </Box>
-            </ListItemText>
+            <ListItemBody
+                isBasketPath={isBasketPath}
+                title={title}
+                price={price}
+                quantity={quantity}
+                id={id}
+                discountPercentage={discountPercentage}
+            />
             <BasketButton value={id} action={removeProduct} variant='outlined'>
                 <DeleteIcon />
             </BasketButton>
