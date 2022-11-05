@@ -4,7 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
-import { store } from './store';
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from './store';
 import './index.css';
 import { App } from './App';
 
@@ -26,7 +27,9 @@ root.render(
             <ThemeProvider theme={theme}>
                 <BrowserRouter>
                     <SnackbarProvider maxSnack={3}>
-                        <App />
+                        <PersistGate loading={null} persistor={persistor}>
+                            <App />
+                        </PersistGate>
                     </SnackbarProvider>
                 </BrowserRouter>
             </ThemeProvider>
